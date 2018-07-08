@@ -8,15 +8,21 @@
 
 namespace App\Controller;
 
+use App\Dao\ProfessorDao;
 use Slim\Slim;
 
 class HomeController
 {
     public static function viewIndex()
     {
+        $dP = new ProfessorDao();
+        $prof = $dP->lista();
+
         $slim = new Slim();
         $slim->render('template/header.php');
-        $slim->render('home/index.php');
+        $slim->render('home/index.php', array(
+            'prof' => count($prof)
+        ));
         $slim->render('template/footer.php');
     }
 }

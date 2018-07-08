@@ -10,6 +10,7 @@ class Database
     protected $db;
 
     /**
+     * Inicia Conexão com o Banco de Dados
      * Database constructor.
      * @throws \Exception
      */
@@ -18,7 +19,7 @@ class Database
         /**
          * @var Config[db]
          */
-        $dbConf = Config::getConfig('db');
+        $dbConf = Config::getConfig('db_development');
 
         /**
          * @var Attributes \PDO

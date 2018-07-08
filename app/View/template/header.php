@@ -35,7 +35,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -54,10 +54,10 @@
                             <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="/curso"><i class="fa fa-book fa-fw"></i> Curso</a>
+                            <a href="/professor"><i class="fa fa-graduation-cap fa-fw"></i> Professor</a>
                         </li>
                         <li>
-                            <a href="/professor"><i class="fa fa-graduation-cap fa-fw"></i> Professor</a>
+                            <a href="/curso"><i class="fa fa-book fa-fw"></i> Curso</a>
                         </li>
                         <li>
                             <a href="/aluno"><i class="fa fa-group fa-fw"></i> Aluno</a>

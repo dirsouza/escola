@@ -30,15 +30,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php if (isset($prof)): ?>
+                                            <?php foreach ($prof as $item): ?>
                                             <tr>
-                                                <td class="text-center">0001</td>
-                                                <td>Diogo Souza</td>
-                                                <td>09/07/1986</td>
+                                                <td class="text-center"><?= str_pad($item['idProfessor'], 5, 0, STR_PAD_LEFT)?></td>
+                                                <td><?= $item['nome'] ?></td>
+                                                <td><?= date('d/m/Y', strtotime($item['dtNascimento'])) ?></td>
                                                 <td class="text-center">
-                                                    <a href="/professor/editar/1" class="btn btn-xs btn-primary btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
-                                                    <a href="/professor/excluir/1" onclick="return confirm('Deseja excluir este registro?')" class="btn btn-xs btn-danger btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></a>
+                                                    <a href="/professor/editar/<?= $item['idProfessor'] ?>" class="btn btn-xs btn-primary btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                                                    <a href="/professor/excluir/<?= $item['idProfessor'] ?>" onclick="return confirm('Deseja excluir este registro?')" class="btn btn-xs btn-danger btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>

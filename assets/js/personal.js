@@ -13,12 +13,12 @@ $(function() {
             errorElement: "small",
             highlight: function(element, errorClass, validClass) {
                 for (var i = 1; i <= 12; i++) {
-                    $(element).parents(".col-md-"+i).addClass("has-error").removeClass("has-success");
+                    $(element).parents(".col-lg-"+i).addClass("has-error").removeClass("has-success");
                 }
             },
             unhighlight: function (element, errorClass, validClass) {
                 for (var i = 1; i <= 12; i++) {
-                    $(element).parents(".col-md-"+i).addClass("has-success").removeClass("has-error");
+                    $(element).parents(".col-lg-"+i).addClass("has-success").removeClass("has-error");
                 }
             }
         });

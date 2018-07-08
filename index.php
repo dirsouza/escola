@@ -29,48 +29,48 @@ $app->get('/', function() {
 });
 
 /**
- * Curso
- * Url: http://www.escola.com.br/curso
- */
-$app->group('/curso', function() use ($app) {
-    $app->get('/', function() {
-        CursoController::viewIndex();
-    });
-
-    $app->group('/novo', function() use ($app) {
-        $app->get('/', function() {
-
-        });
-
-        $app->post('/', function() {
-
-        });
-    });
-
-    $app->group('/editar', function() use ($app) {
-        $app->get('/:id', function($id) {
-
-        });
-
-        $app->post('/:id', function($id) {
-
-        });
-    });
-
-    $app->group('/excluir', function() use ($app) {
-        $app->get('/:id', function($id) {
-
-        });
-    });
-});
-
-/**
  * Professor
  * Url: http://www.escola.com.br/professor
  */
 $app->group('/professor', function() use ($app) {
     $app->get('/', function() {
         ProfessorController::viewIndex();
+    });
+
+    $app->group('/novo', function() use ($app) {
+        $app->get('/', function() {
+            ProfessorController::viewNovo();
+        });
+
+        $app->post('/', function() {
+            ProfessorController::novo($_POST);
+        });
+    });
+
+    $app->group('/editar', function() use ($app) {
+        $app->get('/:id', function($id) {
+            ProfessorController::viewEditar((int)$id);
+        });
+
+        $app->post('/:id', function($id) {
+            ProfessorController::editar((int)$id, $_POST);
+        });
+    });
+
+    $app->group('/excluir', function() use ($app) {
+        $app->get('/:id', function($id) {
+            ProfessorController::excluir((int)$id);
+        });
+    });
+});
+
+/**
+ * Curso
+ * Url: http://www.escola.com.br/curso
+ */
+$app->group('/curso', function() use ($app) {
+    $app->get('/', function() {
+        CursoController::viewIndex();
     });
 
     $app->group('/novo', function() use ($app) {

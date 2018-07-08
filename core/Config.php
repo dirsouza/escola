@@ -5,21 +5,24 @@ namespace Core;
 class Config
 {
     const CONFIG = array(
-        'system' => array (
-            'name' => 'Cadastro de Clientes',
-            'abbrev' => 'CADCli',
-            'version' => '1.0.0'
-        ),
-        'db' => array (
+        'db_development' => array (
             'dtbase' => 'mysql',
             'host' => 'localhost',
             'user' => 'root',
             'pass' => 'root',
-            'dbname' => 'db_cadcli'
+            'dbname' => 'db_escola'
+        ),
+        'db_production' => array (
+            'dtbase' => 'mysql',
+            'host' => 'sql313.hostfree.pw',
+            'user' => 'epree_22356623',
+            'pass' => 'skew@534',
+            'dbname' => 'epree_22356623_escola'
         )
     );
 
     /**
+     * Retorna a configuração
      * @param string $parameter
      * @return array
      * @throws \Exception
