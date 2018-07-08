@@ -9,6 +9,10 @@ session_start();
 
 use Slim\Slim;
 use App\Controller\HomeController;
+use App\Controller\CursoController;
+use App\Controller\ProfessorController;
+use App\Controller\AlunoController;
+use App\Controller\RelatorioController;
 
 $app = new Slim();
 $app->config(array(
@@ -17,23 +21,129 @@ $app->config(array(
 ));
 
 /**
- * Index
- * Url: http://www.cadcli.com.br/index
+ * Home
+ * Url: http://www.escola.com.br/
  */
 $app->get('/', function() {
-    HomeController::home();
+    HomeController::viewIndex();
 });
 
 /**
- * Login
- * Url: http://www.cadcli.com.br/login
+ * Curso
+ * Url: http://www.escola.com.br/curso
  */
-require_once 'routes/login.php';
+$app->group('/curso', function() use ($app) {
+    $app->get('/', function() {
+        CursoController::viewIndex();
+    });
+
+    $app->group('/novo', function() use ($app) {
+        $app->get('/', function() {
+
+        });
+
+        $app->post('/', function() {
+
+        });
+    });
+
+    $app->group('/editar', function() use ($app) {
+        $app->get('/:id', function($id) {
+
+        });
+
+        $app->post('/:id', function($id) {
+
+        });
+    });
+
+    $app->group('/excluir', function() use ($app) {
+        $app->get('/:id', function($id) {
+
+        });
+    });
+});
 
 /**
- * Administrator
- * Url: http://www.cadcli.com.br/admin
+ * Professor
+ * Url: http://www.escola.com.br/professor
  */
-require_once 'routes/admin.php';
+$app->group('/professor', function() use ($app) {
+    $app->get('/', function() {
+        ProfessorController::viewIndex();
+    });
+
+    $app->group('/novo', function() use ($app) {
+        $app->get('/', function() {
+
+        });
+
+        $app->post('/', function() {
+
+        });
+    });
+
+    $app->group('/editar', function() use ($app) {
+        $app->get('/:id', function($id) {
+
+        });
+
+        $app->post('/:id', function($id) {
+
+        });
+    });
+
+    $app->group('/excluir', function() use ($app) {
+        $app->get('/:id', function($id) {
+
+        });
+    });
+});
+
+/**
+ * Aluno
+ * Url: http://www.escola.com.br/aluno
+ */
+$app->group('/aluno', function() use ($app) {
+    $app->get('/', function() {
+        AlunoController::viewIndex();
+    });
+
+    $app->group('/novo', function() use ($app) {
+        $app->get('/', function() {
+
+        });
+
+        $app->post('/', function() {
+
+        });
+    });
+
+    $app->group('/editar', function() use ($app) {
+        $app->get('/:id', function($id) {
+
+        });
+
+        $app->post('/:id', function($id) {
+
+        });
+    });
+
+    $app->group('/excluir', function() use ($app) {
+        $app->get('/:id', function($id) {
+
+        });
+    });
+});
+
+/**
+ * Relatório
+ * Url: http://www.escola.com.br/relatorio
+ */
+$app->group('/relatorio', function() use ($app) {
+    $app->get('/', function() {
+        RelatorioController::viewIndex();
+    });
+});
 
 $app->run();

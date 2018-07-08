@@ -223,7 +223,7 @@ class View
      */
     public function getTemplatePathname($file)
     {
-        return $this->templatesDirectory . DIRECTORY_SEPARATOR . ltrim($file, DIRECTORY_SEPARATOR);
+        return PATH_VIEW . DIRECTORY_SEPARATOR . ltrim($file, DIRECTORY_SEPARATOR);
     }
 
     /********************************************************************************
