@@ -39,7 +39,7 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="idCurso">Curso:</label>
-                                                <select name="idCurso" id="select2" class="form-control" required>
+                                                <select name="idCurso" class="form-control select2" required>
                                                     <option></option>
                                                     <?php foreach($curso as $item): ?>
                                                         <option value="<?= $item['idCurso'] ?>" <?= ($item['idCurso'] == ($_SESSION['erro']['fields']['idCurso'] ?? null)) ? "selected" : null ?>><?= $item['nome'] ?></option>

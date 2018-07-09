@@ -144,6 +144,14 @@ $app->group('/relatorio', function() use ($app) {
     $app->get('/', function() {
         RelatorioController::viewIndex();
     });
+
+    $app->get('/visualizar', function() {
+        RelatorioController::viewRelatorio();
+    });
+
+    $app->post('/visualizar', function() {
+        RelatorioController::relatorio($_POST);
+    });
 });
 
 $app->run();

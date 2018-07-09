@@ -44,7 +44,7 @@ $(function() {
         }
     });
 
-    $('#select2').select2({
+    $('.select2').select2({
         theme: "bootstrap",
         placeholder: "Selecione...",
         allowClear: true,
@@ -85,5 +85,37 @@ $(function() {
 
             toastr.success($msg);
         }
+    };
+
+    $('#gerarRelatorio').on('click', function() {
+        var modulo = $('#modulo').val();
+        var tipo = $('#tipo').val();
+
+        if (modulo != "" && tipo != "") {
+            $.post('/relatorio/visualizar',{
+                modulo: modulo,
+                tipo: tipo
+            }, function(result){
+                console.log(result);
+                window.open('/relatorio/visualizar', '_blank');
+                //window.location.reload();
+            });
+        } else {
+            loadModal("Módulo e Tipo são requiridos.");
+        }
+    });
+
+    function loadModal($msg) {
+        var dialog = bootbox.dialog({
+            size: 'small',
+            title: 'Escola',
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+        });
+
+        dialog.init(function() {
+            setTimeout(function() {
+                dialog.find('.bootbox-body').html($msg);
+            }, 900);
+        });
     }
 });

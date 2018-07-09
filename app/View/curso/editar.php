@@ -32,7 +32,7 @@
                                     <div class="col-lg-5">
                                         <div class="form-group">
                                             <label for="idProfessor">Professor:</label>
-                                            <select name="idProfessor" id="select2" class="form-control" required>
+                                            <select name="idProfessor" class="form-control select2" required>
                                                 <option></option>
                                                 <?php foreach($prof as $item): ?>
                                                     <option value="<?= $item['idProfessor'] ?>" <?= ($item['idProfessor'] == $curso['idProfessor']) ? "selected" : null ?>><?= $item['nome'] ?></option>

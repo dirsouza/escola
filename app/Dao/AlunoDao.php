@@ -47,6 +47,13 @@ class AlunoDao extends Database
         return $sql->fetchAll();
     }
 
+    public function listaRelatorio()
+    {
+        $sql = $this->db->prepare("SELECT a.*, b.nome AS 'curso', c.nome AS 'professor' FROM tbaluno a INNER JOIN tbcurso b USING (idCurso) INNER JOIN tbprofessor c USING (idProfessor)");
+        $sql->execute();
+        return $sql->fetchAll();
+    }
+
     /**
      * Inseri os dados na Tabela
      * @param AlunoModel $f
