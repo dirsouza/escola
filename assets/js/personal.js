@@ -98,7 +98,7 @@ $(function() {
             }, function(result){
                 console.log(result);
                 window.open('/relatorio/visualizar', '_blank');
-                //window.location.reload();
+                window.location.reload();
             });
         } else {
             loadModal("Módulo e Tipo são requiridos.");

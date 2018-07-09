@@ -9,6 +9,8 @@
 namespace App\Controller;
 
 use App\Dao\AlunoDao;
+use App\Dao\CursoDao;
+use App\Dao\ProfessorDao;
 use App\Dao\RelatorioDao;
 use Slim\Slim;
 
@@ -65,14 +67,26 @@ class RelatorioController
         }
     }
 
-    private function getCurso(string $tipo)
+    private function getCurso(string $modulo, string $tipo)
     {
-        echo "Curso";
+        $dados = array(
+            'modulo' => $modulo,
+            'tipo' => $tipo
+        );
+
+        $dC = new CursoDao();
+        $_SESSION[self::DADOS] = $dC->lista()+$dados;
     }
 
-    private function getProfessor(string $tipo)
+    private function getProfessor(string $modulo, string $tipo)
     {
-        echo "Professor";
+        $dados = array(
+            'modulo' => $modulo,
+            'tipo' => $tipo
+        );
+
+        $dP = new ProfessorDao();
+        $_SESSION[self::DADOS] = $dP->lista()+$dados;
     }
 
     private function viewAluno(array $dados, string $tipo)
@@ -88,6 +102,40 @@ class RelatorioController
             case 'analitico':
                 $slim->render('aluno/relAnalitico.php', array(
                     'alunos' => $dados
+                ));
+        }
+    }
+
+    private function viewCurso(array $dados, string $tipo)
+    {
+        $slim = new Slim();
+
+        switch ($tipo) {
+            case 'simplificado':
+                $slim->render('curso/relSimples.php', array(
+                    'cursos' => $dados
+                ));
+                break;
+            case 'analitico':
+                $slim->render('curso/relAnalitico.php', array(
+                    'cursos' => $dados
+                ));
+        }
+    }
+
+    private function viewProfessor(array $dados, string $tipo)
+    {
+        $slim = new Slim();
+
+        switch ($tipo) {
+            case 'simplificado':
+                $slim->render('professor/relSimples.php', array(
+                    'cursos' => $dados
+                ));
+                break;
+            case 'analitico':
+                $slim->render('professor/relAnalitico.php', array(
+                    'cursos' => $dados
                 ));
         }
     }
