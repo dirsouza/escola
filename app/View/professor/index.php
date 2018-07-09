@@ -30,8 +30,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php if (isset($prof)): ?>
-                                            <?php foreach ($prof as $item): ?>
+                                        <?php foreach ($prof as $item): ?>
                                             <tr>
                                                 <td class="text-center"><?= str_pad($item['idProfessor'], 5, 0, STR_PAD_LEFT)?></td>
                                                 <td><?= $item['nome'] ?></td>
@@ -41,8 +40,7 @@
                                                     <a href="/professor/excluir/<?= $item['idProfessor'] ?>" onclick="return confirm('Deseja excluir este registro?')" class="btn btn-xs btn-danger btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
+                                        <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -52,5 +50,6 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
+                <div id="toastr" class="hidden"><?= $_SESSION['msg'] ?? null; unset($_SESSION['msg']) ?></div>
             </div>
             <!-- /#page-wrapper -->

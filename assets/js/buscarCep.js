@@ -3,14 +3,14 @@ $(function() {
 
     function limpa_endereco() {
         // Limpa valores do formulário de cep.
-        $("#desStreet").val("");
-        $("#desNeighborhood").val("");
-        $("#desCity").val("");
-        $("#desState").val("");
+        $("#logradouro").val("");
+        $("#bairro").val("");
+        $("#cidade").val("");
+        $("#estado").val("");
     }
 
     //Quando o campo cep perde o foco.
-    $("#desZip").on('blur', function() {
+    $("#cep").on('blur', function() {
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
 
@@ -24,20 +24,20 @@ $(function() {
                 //Verifica se existe conexão com a internet
                 if ($onLine === "online") {
                     //Preenche os campos com "..." enquanto consulta webservice.
-                    $("#desStreet").val("...");
-                    $("#desNeighborhood").val("...");
-                    $("#desCity").val("...");
-                    $("#desState").val("...");
+                    $("#logradouro").val("...");
+                    $("#bairro").val("...");
+                    $("#cidade").val("...");
+                    $("#estado").val("...");
 
                     //Consulta o webservice viacep.com.br/
                     $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
 
                         if (!("erro" in dados)) {
                             //Atualiza os campos com os valores da consulta.
-                            $("#desStreet").val(dados.logradouro);
-                            $("#desNeighborhood").val(dados.bairro);
-                            $("#desCity").val(dados.localidade);
-                            $("#desState").val(dados.uf);
+                            $("#logradouro").val(dados.logradouro);
+                            $("#bairro").val(dados.bairro);
+                            $("#cidade").val(dados.localidade);
+                            $("#estado").val(dados.uf);
                         } else {
                             //CEP pesquisado não foi encontrado.
                             limpa_endereco();
@@ -45,8 +45,8 @@ $(function() {
                         }
                     });
                 } else {
-                    //consulta no banco de dados
-                    getCep($('#desZip').val());
+                    //Sem Internet
+                    loadModal("Não foi possível fazer a Consulta.<br><small>Verifique sua conexão com a Internet.</small>");
                 }
             } else {
                 //cep é inválido.
@@ -59,38 +59,10 @@ $(function() {
         }
     });
 
-    /**
-     * Verifica se o CEP passado existe no Banco de Dados.
-     * @param {cep}  
-     */
-    function getCep($cep) {
-        $.ajax({
-            type: 'GET',
-            url: '/registration/commerce/getcep/' + $cep,
-            dataType: "json",
-            success: function($result) {
-                if ($result != null) {
-                    $('#desRua').val($result.desrua);
-                    $("#desStreet").val($result.desStreet);
-                    $("#desNeighborhood").val($result.desNeighborhood);
-                    $("#desCity").val($result.desCity);
-                    $("#desState").val($result.desState);
-                    return true;
-                } else {
-                    limpa_endereco();
-                    loadModal("Sem Conexão com a Internet e o CEP não foi encontrado no Banco.");
-                }
-            },
-            error: function($error) {
-                console.log($error);
-            }
-        });
-    }
-
     function loadModal($msg) {
         var dialog = bootbox.dialog({
             size: 'small',
-            title: '<i class="glyphicon glyphicon-shopping-cart"> </i> CADCli',
+            title: 'Escola',
             message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
         });
 

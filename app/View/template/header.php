@@ -19,6 +19,12 @@
         <link rel="stylesheet" href="/lib/datatables/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="/lib/datatables/extensions/responsive/css/responsive.bootstrap.min.css">
 
+        <!-- Select2 -->
+        <link href="/lib/select2/css/select2.min.css" rel="stylesheet">
+        <link href="/lib/select2/css/select2-bootstrap.min.css" rel="stylesheet">
+
+        <!-- Toastr -->
+        <link href="/lib/toastr/toastr.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="/assets/css/sb-admin-2.css" rel="stylesheet">

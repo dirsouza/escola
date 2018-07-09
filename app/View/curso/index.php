@@ -30,15 +30,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach ($curso as $item): ?>
                                             <tr>
-                                                <td class="text-center">0001</td>
-                                                <td>PHP 7</td>
-                                                <td>Diogo Souza</td>
+                                                <td class="text-center"><?= str_pad($item['idCurso'], 5, 0, STR_PAD_LEFT)?></td>
+                                                <td><?= $item['nome'] ?></td>
+                                                <td><?= $item['professor'] ?></td>
                                                 <td class="text-center">
-                                                    <a href="/curso/editar/1" class="btn btn-xs btn-primary btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
-                                                    <a href="/curso/excluir/1" onclick="return confirm('Deseja excluir este registro?')" class="btn btn-xs btn-danger btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></a>
+                                                    <a href="/curso/editar/<?= $item['idCurso'] ?>" class="btn btn-xs btn-primary btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                                                    <a href="/curso/excluir/<?= $item['idCurso'] ?>" onclick="return confirm('Deseja excluir este registro?')" class="btn btn-xs btn-danger btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
+                                        <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -48,5 +50,6 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
+                <div id="toastr" class="hidden"><?= $_SESSION['msg'] ?? null; unset($_SESSION['msg']) ?></div>
             </div>
             <!-- /#page-wrapper -->

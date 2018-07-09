@@ -75,27 +75,27 @@ $app->group('/curso', function() use ($app) {
 
     $app->group('/novo', function() use ($app) {
         $app->get('/', function() {
-
+            CursoController::viewNovo();
         });
 
         $app->post('/', function() {
-
+            CursoController::novo($_POST);
         });
     });
 
     $app->group('/editar', function() use ($app) {
         $app->get('/:id', function($id) {
-
+            CursoController::viewEditar((int)$id);
         });
 
         $app->post('/:id', function($id) {
-
+            CursoController::editar((int)$id, $_POST);
         });
     });
 
     $app->group('/excluir', function() use ($app) {
         $app->get('/:id', function($id) {
-
+            CursoController::excluir((int)$id);
         });
     });
 });
@@ -111,27 +111,27 @@ $app->group('/aluno', function() use ($app) {
 
     $app->group('/novo', function() use ($app) {
         $app->get('/', function() {
-
+            AlunoController::viewNovo();
         });
 
         $app->post('/', function() {
-
+            AlunoController::novo($_POST);
         });
     });
 
     $app->group('/editar', function() use ($app) {
         $app->get('/:id', function($id) {
-
+            AlunoController::viewEditar((int)$id);
         });
 
         $app->post('/:id', function($id) {
-
+            AlunoController::editar((int)$id, $_POST);
         });
     });
 
     $app->group('/excluir', function() use ($app) {
         $app->get('/:id', function($id) {
-
+            AlunoController::excluir((int)$id);
         });
     });
 });

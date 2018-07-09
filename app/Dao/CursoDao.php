@@ -3,20 +3,20 @@
  * Created by PhpStorm.
  * User: diogo.souza
  * Date: 08/07/2018
- * Time: 13:00
+ * Time: 17:22
  */
 
 namespace App\Dao;
 
-use App\Model\ProfessorModel;
+use App\Model\CursoModel;
 use Core\Database;
 use Core\Helpers;
 
-class ProfessorDao extends Database
+class CursoDao extends Database
 {
     /**
      * Chama o construtor da conexão
-     * ProfessorDao constructor.
+     * CursoDao constructor.
      * @throws \Exception
      */
     public function __construct()
@@ -30,7 +30,7 @@ class ProfessorDao extends Database
      */
     public function lista()
     {
-        $sql = $this->db->prepare("SELECT * FROM tbprofessor");
+        $sql = $this->db->prepare("SELECT a.*, b.nome AS 'professor' FROM tbcurso a INNER JOIN tbprofessor b USING (idProfessor)");
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -42,20 +42,20 @@ class ProfessorDao extends Database
      */
     public function listarId(int $id)
     {
-        $sql = $this->db->prepare("SELECT * FROM tbprofessor WHERE idProfessor = ?");
+        $sql = $this->db->prepare("SELECT * FROM tbcurso WHERE idCurso = ?");
         $sql->execute([$id]);
         return $sql->fetchAll();
     }
 
     /**
      * Inseri os dados na Tabela
-     * @param ProfessorModel $f
+     * @param CursoModel $f
      */
-    public function salvar(ProfessorModel $f)
+    public function salvar(CursoModel $f)
     {
         $fields = array(
             'nome' => $f->getNome(),
-            'dtNascimento' => $f->getDtNascimento()
+            'idProfessor' => $f->getIdProfessor()
         );
 
         for ($i = 0; $i < count(array_keys($fields)); $i++) {
@@ -64,26 +64,26 @@ class ProfessorDao extends Database
 
         if (self::validarDados($f)) {
             $helpers = new Helpers();
-            $helpers->setErrors("O Professor informado já consta no banco de dados.");
+            $helpers->setErrors("O Curso informado já consta no banco de dados.");
             $helpers->sessionErro($_SERVER['REQUEST_URI'], $fields);
         }
 
         $sql = $this->db->prepare(
-            "INSERT INTO tbprofessor (" . implode(',', array_keys($fields)) . ") VALUES (" . implode(',', array_values($q)) . ")"
+            "INSERT INTO tbcurso (" . implode(',', array_keys($fields)) . ") VALUES (" . implode(',', array_values($q)) . ")"
         );
         $sql->execute(array_values($fields));
     }
 
     /**
      * Editar os dados na Tabela
-     * @param ProfessorModel $f
+     * @param CursoModel $f
      * @param int $id
      */
-    public function editar(ProfessorModel $f, int $id)
+    public function editar(CursoModel $f, int $id)
     {
         $fields = array(
             'nome' => $f->getNome(),
-            'dtNascimento' => $f->getDtNascimento()
+            'idProfessor' => $f->getIdProfessor()
         );
 
         foreach ($fields as $key => $value) {
@@ -92,12 +92,12 @@ class ProfessorDao extends Database
 
         if (self::validarDados($f)) {
             $helpers = new Helpers();
-            $helpers->setErrors("O Professor informado já consta no banco de dados.");
+            $helpers->setErrors("O Curso informado já consta no banco de dados.");
             $helpers->sessionErro($_SERVER['REQUEST_URI'], $fields);
         }
 
         $sql = $this->db->prepare(
-            "UPDATE tbprofessor SET " . implode(',', array_values($q)) . " WHERE idProfessor = ?"
+            "UPDATE tbcurso SET " . implode(',', array_values($q)) . " WHERE idCurso = ?"
         );
 
         array_push($fields, $id);
@@ -110,23 +110,23 @@ class ProfessorDao extends Database
      */
     public function excluir(int $id)
     {
-        $sql = $this->db->prepare("DELETE FROM tbprofessor WHERE idProfessor = ?");
+        $sql = $this->db->prepare("DELETE FROM tbcurso WHERE idCurso = ?");
         $sql->execute([$id]);
     }
 
     /**
      * Valida os dados da Tabela pelas Regras
-     * @param ProfessorModel $f
+     * @param CursoModel $f
      * @return bool
      */
-    private function validarDados(ProfessorModel $f)
+    private function validarDados(CursoModel $f)
     {
         $rules = $f->rules();
         $result = self::lista();
 
         foreach ($result as $key) {
             foreach ($rules['unique'] as $r => $value) {
-                if ($key[$value] === $f->{'get' . ucfirst($value)}()) {
+                if ($key[$value] === $f->{'get' . ucfirst($value)}() && $key['idProfessor'] === $f->getIdProfessor()) {
                     return true;
                 }
             }

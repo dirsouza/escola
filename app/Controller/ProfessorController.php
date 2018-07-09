@@ -41,6 +41,8 @@ class ProfessorController
         $dP = new ProfessorDao();
         $dP->salvar($mP);
 
+        $_SESSION['msg'] = "Professor <b>" . $data['nome'] . "</b> cadastrado com sucesso!";
+
         header("location: /professor");
         exit;
     }
@@ -64,6 +66,8 @@ class ProfessorController
         $dP = new ProfessorDao();
         $dP->editar($mP, $id);
 
+        $_SESSION['msg'] = "Os dados do Professor <b>" . $data['nome'] . "</b> foram atualizados com sucesso!";
+
         header("location: /professor");
         exit;
     }
@@ -72,6 +76,8 @@ class ProfessorController
     {
         $dP = new ProfessorDao();
         $dP->excluir($id);
+
+        $_SESSION['msg'] = "Professor excluído com sucesso!";
 
         header("location: /professor");
         exit;

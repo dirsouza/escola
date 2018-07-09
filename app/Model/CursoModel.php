@@ -3,19 +3,19 @@
  * Created by PhpStorm.
  * User: diogo.souza
  * Date: 08/07/2018
- * Time: 12:54
+ * Time: 17:20
  */
 
 namespace App\Model;
 
 use Core\Helpers;
 
-class ProfessorModel
+class CursoModel
 {
-    private $idProfessor;
+    private $idCurso;
     private $nome;
-    private $dtNascimento;
-    private $dtCriacao;
+    private $idProfessor;
+    private $dtCadastro;
 
     /**
      * Seta os dados de enviados
@@ -47,7 +47,7 @@ class ProfessorModel
     public function rules()
     {
         return array(
-            'required' => array('nome', 'dtNascimento'),
+            'required' => array('nome', 'idProfessor'),
             'unique' => array('nome')
         );
     }
@@ -55,17 +55,17 @@ class ProfessorModel
     /**
      * @return mixed
      */
-    public function getIdProfessor()
+    public function getIdCurso()
     {
-        return $this->idProfessor;
+        return $this->idCurso;
     }
 
     /**
-     * @param mixed $idProfessor
+     * @param mixed $idCurso
      */
-    public function setIdProfessor($idProfessor)
+    public function setIdCurso($idCurso)
     {
-        $this->idProfessor = $idProfessor;
+        $this->idCurso = $idCurso;
     }
 
     /**
@@ -87,32 +87,32 @@ class ProfessorModel
     /**
      * @return mixed
      */
-    public function getDtNascimento()
+    public function getIdProfessor()
     {
-        return $this->dtNascimento;
+        return $this->idProfessor;
     }
 
     /**
-     * @param mixed $dtNascimento
+     * @param mixed $idProfessor
      */
-    public function setDtNascimento($dtNascimento)
+    public function setIdProfessor($idProfessor)
     {
-        $this->dtNascimento = $dtNascimento;
+        $this->idProfessor = $idProfessor;
     }
 
     /**
      * @return mixed
      */
-    public function getDtCriacao()
+    public function getDtCadastro()
     {
-        return $this->dtCriacao;
+        return $this->dtCadastro;
     }
 
     /**
-     * @param mixed $dtCriacao
+     * @param mixed $dtCadastro
      */
-    public function setDtCriacao($dtCriacao)
+    public function setDtCadastro($dtCadastro)
     {
-        $this->dtCriacao = $dtCriacao;
+        $this->dtCadastro = $dtCadastro;
     }
 }

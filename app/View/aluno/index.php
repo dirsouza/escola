@@ -31,16 +31,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach ($aluno as $item): ?>
                                             <tr>
-                                                <td class="text-center">0001</td>
-                                                <td>Diogo Rodrigues de Souza</td>
-                                                <td>PHP 7</td>
-                                                <td>09/07/1986</td>
+                                                <td class="text-center"><?= str_pad($item['idAluno'], 5, 0, STR_PAD_LEFT)?></td>
+                                                <td><?= $item['nome'] ?></td>
+                                                <td><?= $item['curso'] ?></td>
+                                                <td><?= date('d/m/Y', strtotime($item['dtNascimento'])) ?></td>
                                                 <td class="text-center">
-                                                    <a href="/aluno/editar/1" class="btn btn-xs btn-primary btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
-                                                    <a href="/aluno/excluir/1" onclick="return confirm('Deseja excluir este registro?')" class="btn btn-xs btn-danger btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></a>
+                                                    <a href="/aluno/editar/<?= $item['idAluno'] ?>" class="btn btn-xs btn-primary btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                                                    <a href="/aluno/excluir/<?= $item['idAluno'] ?>" onclick="return confirm('Deseja excluir este registro?')" class="btn btn-xs btn-danger btn-flat" style="width: 25px;" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
+                                        <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -50,5 +52,6 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
+                <div id="toastr" class="hidden"><?= $_SESSION['msg'] ?? null; unset($_SESSION['msg']) ?></div>
             </div>
             <!-- /#page-wrapper -->

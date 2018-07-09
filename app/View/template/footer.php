@@ -22,11 +22,21 @@
     <script src="/lib/jquery-validate/jquery.validate.min.js"></script>
     <script src="/lib/jquery-validate/localization/messages_pt_BR.min.js"></script>
 
+    <!-- jQuery Mask -->
+    <script src="/lib/jquery-mask/jquery.mask.min.js"></script>
+
     <!-- Bootbox -->
     <script src="/lib/bootbox/bootbox.min.js"></script>
 
+    <!-- Toastr -->
+    <script src="/lib/toastr/toastr.min.js"></script>
+
     <!-- Buscar CEP -->
     <script src="/assets/js/buscarCep.js"></script>
+
+    <!-- Select2 -->
+    <script src="/lib/select2/js/select2.min.js"></script>
+    <script src="/lib/select2/js/i18n/pt-BR.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="/assets/js/sb-admin-2.js"></script>
