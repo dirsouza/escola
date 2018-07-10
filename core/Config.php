@@ -14,10 +14,10 @@ class Config
         ),
         'db_production' => array (
             'dtbase' => 'mysql',
-            'host' => 'sql313.hostfree.pw',
-            'user' => 'epree_22356623',
+            'host' => 'fdb18.awardspace.net',
+            'user' => '2554622_escola',
             'pass' => 'skew@534',
-            'dbname' => 'epree_22356623_escola'
+            'dbname' => '2554622_escola'
         )
     );
 

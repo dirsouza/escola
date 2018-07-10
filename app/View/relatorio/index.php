@@ -27,9 +27,9 @@
                                                 <label>Módulo:</label>
                                                 <select name="modulo" id="modulo" class="form-control select2" required>
                                                     <option></option>
-                                                <?php foreach ($tabelas as $item): ?>
-                                                    <option value="<?= $item['Tables_in_db_escola'] ?>"><?= ucfirst(preg_replace('/tb/',"", $item['Tables_in_db_escola'])) ?></option>
-                                                <?php endforeach; ?>
+                                                    <option value="tbaluno">Aluno</option>
+                                                    <option value="tbcurso">Curso</option>
+                                                    <option value="tbprofessor">Professor</option>
                                                 </select>
                                             </div>
                                         </div>

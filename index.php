@@ -145,12 +145,12 @@ $app->group('/relatorio', function() use ($app) {
         RelatorioController::viewIndex();
     });
 
-    $app->get('/visualizar', function() {
-        RelatorioController::viewRelatorio();
+    $app->post('/', function() {
+        RelatorioController::relatorio($_POST);
     });
 
-    $app->post('/visualizar', function() {
-        RelatorioController::relatorio($_POST);
+    $app->get('/visualizar', function() {
+        RelatorioController::viewRelatorio();
     });
 });
 

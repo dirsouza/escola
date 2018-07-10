@@ -92,13 +92,16 @@ $(function() {
         var tipo = $('#tipo').val();
 
         if (modulo != "" && tipo != "") {
-            $.post('/relatorio/visualizar',{
+            $.post('/relatorio', {
                 modulo: modulo,
                 tipo: tipo
-            }, function(result){
-                console.log(result);
-                window.open('/relatorio/visualizar', '_blank');
-                window.location.reload();
+            }, function(response, status){
+                if (status == "success") {
+                    window.open('/relatorio/visualizar', '_blank');
+                    window.location.reload();
+                } else {
+                    console.log(status);
+                }
             });
         } else {
             loadModal("Módulo e Tipo são requiridos.");

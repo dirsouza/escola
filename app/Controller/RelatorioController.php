@@ -11,7 +11,6 @@ namespace App\Controller;
 use App\Dao\AlunoDao;
 use App\Dao\CursoDao;
 use App\Dao\ProfessorDao;
-use App\Dao\RelatorioDao;
 use Slim\Slim;
 
 class RelatorioController
@@ -20,14 +19,9 @@ class RelatorioController
 
     public static function viewIndex()
     {
-        $dR = new RelatorioDao();
-        $tabelas = $dR->listaTabelas();
-
         $slim = new Slim();
         $slim->render('template/header.php');
-        $slim->render('relatorio/index.php', array(
-            'tabelas' => $tabelas
-        ));
+        $slim->render('relatorio/index.php');
         $slim->render('template/footer.php');
     }
 
@@ -45,10 +39,10 @@ class RelatorioController
     public static function relatorio(array $data)
     {
         extract($data);
-        self::{'get' . ucfirst(preg_replace('/tb/', '', $modulo))}($modulo, $tipo);
+        self::{'get' . ucfirst(preg_replace('/tb/', '', $modulo))}($modulo, $tipo);        
     }
 
-    private function getAluno(string $modulo, string $tipo)
+    private static function getAluno(string $modulo, string $tipo)
     {
         $dados = array(
             'modulo' => $modulo,
@@ -67,7 +61,7 @@ class RelatorioController
         }
     }
 
-    private function getCurso(string $modulo, string $tipo)
+    private static function getCurso(string $modulo, string $tipo)
     {
         $dados = array(
             'modulo' => $modulo,
@@ -78,7 +72,7 @@ class RelatorioController
         $_SESSION[self::DADOS] = $dC->lista()+$dados;
     }
 
-    private function getProfessor(string $modulo, string $tipo)
+    private static function getProfessor(string $modulo, string $tipo)
     {
         $dados = array(
             'modulo' => $modulo,
@@ -89,7 +83,7 @@ class RelatorioController
         $_SESSION[self::DADOS] = $dP->lista()+$dados;
     }
 
-    private function viewAluno(array $dados, string $tipo)
+    private static function viewAluno(array $dados, string $tipo)
     {
         $slim = new Slim();
 
@@ -106,7 +100,7 @@ class RelatorioController
         }
     }
 
-    private function viewCurso(array $dados, string $tipo)
+    private static function viewCurso(array $dados, string $tipo)
     {
         $slim = new Slim();
 
@@ -123,7 +117,7 @@ class RelatorioController
         }
     }
 
-    private function viewProfessor(array $dados, string $tipo)
+    private static function viewProfessor(array $dados, string $tipo)
     {
         $slim = new Slim();
 
